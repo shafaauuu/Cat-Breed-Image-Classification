@@ -1,0 +1,32 @@
+{% extends "layout.html" %}
+{% block content %}
+
+	<form class="form-signin" method=post enctype=multipart/form-data>
+		<img class="cat_intro" src="{{url_for('static', filename='cat-removebg-preview.png')}}" align="middle" />
+		<br />
+		<h1 class="see" style="font-family: 'Times New Roman', serif;">Check your cat's breed!</h1>
+		<h2 class="upload" style="font-family: 'Times New Roman', serif;">Upload The Image</h2>
+		<input type="file" style="font-family: 'Times New Roman', serif;" name="file"  id="inputfile"  class="h5 mb-3 font-weight-normal" onchange="preview_image(event)">
+		<br />
+		<img id="output-image" class="rounded mx-auto d-block"/>
+		<br />
+		<button class="btn btn-outline-secondary" type="submit" style="width: 200px; height: 45px; font-family: 'Times New Roman', serif;">CHECK!</button>
+		<p class="mt-5 mb-3" style="font-family: 'Times New Roman', serif;">Deep Learning Final Project</p>
+		<div class="row">
+			<div class="col-sm-4 align-self-center"><img src="/static/pt.png" alt="" width="60"></div>
+			<div class="col-sm-4 align-self-center"><img src="/static/flask.png" alt="" width="90"></div>
+			<div class="col-sm-4 align-self-center"><img src="/static/bs.png" alt="" width="50"></div>
+		</div>
+	</form>
+
+	<script type="text/javascript">
+		function preview_image(event) {
+			var reader = new FileReader();
+			reader.onload = function(){
+				var output = document.getElementById('output-image')
+				output.src = reader.result;
+			}
+			reader.readAsDataURL(event.target.files[0]);
+		}
+	</script>
+{% endblock %}
